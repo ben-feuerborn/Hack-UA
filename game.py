@@ -28,7 +28,7 @@ class Game:
         #if game is paused
         self.game_paused = False
         pause_button_image = pygame.image.load("images/Menu/Pause Button Solid.png").convert_alpha()
-        self.pause_button = Button(self.screen_width-70, 50, pause_button_image,0.2,self) 
+        self.pause_button = Button(self.screen_width-70, 50, pause_button_image,0.6,self) 
 
         info_image = pygame.image.load("images/Menu/Info Solid.png").convert_alpha()
         quit_image = pygame.image.load("images/Menu/Quit Solid.png").convert_alpha()
@@ -64,7 +64,7 @@ class Game:
         # creating the check button and checking ___________________________________________________________________
         self.check = False
         check_image = pygame.image.load("images/Menu/Check Solid.png").convert_alpha()
-        button = Button(900, 600, check_image, 0.2, self)
+        button = Button(900, 600, check_image, 0.625, self)
         self.check_button = button
 
         
