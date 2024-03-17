@@ -52,7 +52,7 @@ class Game:
             button  = Button(100,80+(color*80),image,0.2,self)
             self.color_buttons.append(button)
 
-    def load_levels(self):
+    def load_levels(self, json_file):
         with open(json_file, "r") as file: 
             data = json.load(file)
         i = 0
@@ -149,7 +149,7 @@ class Game:
 
     def draw_character_text(self, character):
         text_surface = self.base_font.render(character.GetLetter(), True, (0,0,0))
-        self.screen.blit(text_surface, (character.getButton().rect.x + 37, character.getButton().rect.y +32))
+        self.screen.blit(text_surface, (character.getButton().rect.x + 35, character.getButton().rect.y +32))
 
 
     def _paused(self):

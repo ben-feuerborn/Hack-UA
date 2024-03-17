@@ -20,7 +20,7 @@ def make_grid(grid_size):
     # beginning cells
     #indexes are flipped idk why
     grid [0][0]._letter = "N"
-    grid [0][0]._has_text = False
+    grid [0][0]._has_text = False # text can't be changed
     grid [0][0]._color = "Red"
     grid[0][0]._color_change = False
 
