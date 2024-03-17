@@ -27,11 +27,11 @@ class Game:
                 
         #if game is paused
         self.game_paused = False
-        continue_image = pygame.image.load("images/Load Game Solid.png").convert_alpha()
-        quit_image = pygame.image.load("images/Quit Solid.png").convert_alpha()
-        new_game_image = pygame.image.load("images/New Game Solid.png").convert_alpha()
-        self.continue_button = Button(self.screen_width/2,self.screen_height/4, continue_image,1,self)
-        self.new_game_button = Button(self.screen_width/2,(self.screen_height/4)*2,new_game_image,1,self)
+        info_image = pygame.image.load("images/Menu/Info Solid.png").convert_alpha()
+        quit_image = pygame.image.load("images/Menu/Quit Solid.png").convert_alpha()
+        new_game_image = pygame.image.load("images/Menu/New Game Solid.png").convert_alpha()
+        self.new_game_button = Button(self.screen_width/2,self.screen_height/4, new_game_image,1,self)
+        self.info_button = Button(self.screen_width/2,(self.screen_height/4)*2,info_image,1,self)
         self.quit_button = Button(self.screen_width/2,(self.screen_height/4)*3,quit_image,1,self)
 
         # creating the board
@@ -164,7 +164,7 @@ class Game:
         """Draw the pause screen menu and give 3 different options to the user
         to continue, quit, or start a new game"""
         self.screen.fill(self.bg_color)
-        if self.continue_button.draw():
+        if self.info_button.draw():
             time.sleep(0.2) # stops program for a bit to not have problems with colission points 
             self.game_paused = False
         if self.quit_button.draw():
