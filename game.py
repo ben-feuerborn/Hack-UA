@@ -4,6 +4,7 @@ from button import *
 from board import *
 import sys
 import json
+import time
 
 
 class Game: 
@@ -22,13 +23,13 @@ class Game:
         self.screen_width = self.screen.get_rect().width
         self.screen_height = self.screen.get_rect().height
         #TITLE
-        pygame.display.set_caption("Flow Game")
+        pygame.display.set_caption("Word-Flow")
                 
         #if game is paused
         self.game_paused = False
-        continue_image = pygame.image.load("images/continue.png").convert_alpha()
-        quit_image = pygame.image.load("images/quit.png").convert_alpha()
-        new_game_image = pygame.image.load("images/newGame.png").convert_alpha()
+        continue_image = pygame.image.load("images/Load Game Solid.png").convert_alpha()
+        quit_image = pygame.image.load("images/Quit Solid.png").convert_alpha()
+        new_game_image = pygame.image.load("images/New Game Solid.png").convert_alpha()
         self.continue_button = Button(self.screen_width/2,self.screen_height/4, continue_image,1,self)
         self.new_game_button = Button(self.screen_width/2,(self.screen_height/4)*2,new_game_image,1,self)
         self.quit_button = Button(self.screen_width/2,(self.screen_height/4)*3,quit_image,1,self)
@@ -53,6 +54,8 @@ class Game:
             self.color_buttons.append(button)
 
     def load_levels(self, json_file):
+        """Loads the levels from a json file and creates characters and buttons appropriately. 
+        It then stores them in a board object and appends it to the self.levels list"""
         with open(json_file, "r") as file: 
             data = json.load(file)
         i = 0
@@ -75,6 +78,10 @@ class Game:
             self.levels.append(temp)
 
     def run_game(self):
+        """Main loop for the game. it will keep running until the game is done
+        There are 4 main types of events, game is being paused (pulls up paused menu), 
+        game just started or newgame button was clicked, pulling the main start menu, 
+        and game is being played. so when flipping the board buttons need to be drawn"""
         # Start the main loop for the game
         while True:
             # call a method to check to see if any keyboard events have occurred
@@ -121,9 +128,10 @@ class Game:
                     else:
                         #draw up the grid so it doesn't get covered
                         for row in self.characters: 
-                            for x in row:
-                                x.getButton().draw()
-                                self.draw_character_text(x)
+                            for chars in row:
+                                if chars.getButton().draw():
+                                    running = False # if user selects other cell it kicks out and saves current work
+                                self.draw_character_text(chars)
                     
                         #draw up teh color buttons as well so they dont get covered
                         for button_index in range(len(self.color_buttons)): #WE CAN MAYBE CHANGE THIS TO IF ANOTHER COLOR IS SELECTED IT BREAKS OUT OF THIS LOOP
@@ -157,6 +165,7 @@ class Game:
         to continue, quit, or start a new game"""
         self.screen.fill(self.bg_color)
         if self.continue_button.draw():
+            time.sleep(0.2) # stops program for a bit to not have problems with colission points 
             self.game_paused = False
         if self.quit_button.draw():
             sys.exit()
