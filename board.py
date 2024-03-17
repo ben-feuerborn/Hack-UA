@@ -2,18 +2,26 @@ from button import *
 
 class Character: 
     """Class with attributes letter, row, column"""
-    def __init__(self, letter = "", color = "white",button = "na"):
-        #d is a button object
+    def __init__(self, letter = "", color = "white",button = "na", has_text = False, color_change = True):
+        #button is a button object
         self._letter = letter
         self._color = color
-        self.button = button
+        self._button = button #has changeable text
+        self._has_text = has_text
+        self._color_change = color_change # has changeable color
+
+    def get_color_change(self):
+        return self._color_change
+    
+    def get_has_text(self):
+        return self._has_text
 
     def change_button_color(self,image, color):
-        self.button.change_image(image)
+        self._button.change_image(image)
         self._color = color
     
     def getButton(self):
-        return self.button
+        return self._button
     
     def GetLetter(self):
         """returns the letter"""
@@ -36,11 +44,9 @@ class Character:
 
 class Board: 
     """Class with attributes size, board and category, wordNum"""
-    def __init__(self, size = 0, board = [], category = "n/a", wordNum = 0):
-        self._size = size
+    def __init__(self, board = [], category = "n/a"):
         self._board = board
         self._category = category
-        self._wordNum = wordNum
     
     def GetBoard(self):
         """returns the board"""
@@ -50,14 +56,6 @@ class Board:
         """returns the category"""
         return self._category
     
-    def GetWordNum(self):
-        """returns the word number"""
-        return self._wordNum
-    
-    def GetSize(self):
-        """returns the size"""
-        return self._size
-    
     def SetBoard(self, board):
         """sets the board"""
         self._board = board
@@ -65,13 +63,5 @@ class Board:
     def SetCategory(self, category):
         """sets the category"""
         self._category = category
-    
-    def SetWordNum(self, wordNum):
-        """sets the word number"""
-        self._wordNum = wordNum
 
-    def SetSize(self, size):
-        """sets the size"""
-        self._size = size
-
-    
+        
