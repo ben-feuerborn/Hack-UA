@@ -1,9 +1,11 @@
-
 import pygame
-from button import *
-from board import *
 import json
 import sys
+
+from board import *
+from button import *
+from textButton2 import *
+
 
 
 class Game: 
@@ -52,8 +54,18 @@ class Game:
             image = pygame.image.load("Images/buttons/"+self.colors[color]+" Button.png").convert_alpha()
             button  = Button(100,80+(color*80),image,0.2,self)
             self.color_buttons.append(button)
-
+    
     def run_game(self):
+        txt_buttons = []
+        
+        for i in range(5):
+            row = []
+            for j in range(5):
+                self.text_button = TextButton(475 + (i*80),125 + (j*80), 50, 50)
+                row.append(self.text_button)
+            txt_buttons.append(row)
+            
+        
         # Start the main loop for the game
         while True:
             # call a method to check to see if any keyboard events have occurred
@@ -70,6 +82,9 @@ class Game:
                     if self.color_buttons[button_index].draw(): #see which button color is selected and set all others to False
                         self.colors_index = [False, False, False, False, False, False, False, False, False]
                         self.colors_index[button_index] = not self.colors_index[button_index]
+                for i in range(5): 
+                    for j in range(5):
+                        txt_buttons[i][j].draw(self.screen)
 
             pygame.display.flip()
 
