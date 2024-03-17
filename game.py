@@ -34,15 +34,20 @@ class Game:
         self.info_button = Button(self.screen_width/2,(self.screen_height/4)*2,info_image,1,self)
         self.quit_button = Button(self.screen_width/2,(self.screen_height/4)*3,quit_image,1,self)
 
-        # creating the board
+        # creating the board with levels 
 
         self.current_level = 0 # keeps track of which level is curren _________________________________change this with new game
         self.levels = []
         json_file = "grid.json"
-        self.load_levels(json_file)
-        
+        self.load_levels(json_file,self.levels)
+
+        #creating answers
+        self.answers = []
+        json_answer = "answers.json"
+        self.load_levels(json_answer,self.answers)
+
         #self.characters will always be the current level 
-        self.characters = self.levels[0].GetBoard()
+        self.characters = self.levels[self.current_level].GetBoard()
 
         #creating buttons for color selection
         self.colors = ["Dark Blue", "Green", "Light Blue", "Medium Blue", "Orange", "Pink", "Red", "Yellow", "Default"]
@@ -53,7 +58,13 @@ class Game:
             button  = Button(100,80+(color*80),image,0.2,self)
             self.color_buttons.append(button)
 
-    def load_levels(self, json_file):
+        # creating the check button and checking ___________________________________________________________________
+        self.check = False
+        check_image = pygame.image.load("images/Menu/Check Solid.png").convert_alpha()
+        button = Button(900, 600, check_image, 0.2, self)
+        self.check_button = button
+
+    def load_levels(self, json_file,lst):
         """Loads the levels from a json file and creates characters and buttons appropriately. 
         It then stores them in a board object and appends it to the self.levels list"""
         with open(json_file, "r") as file: 
@@ -75,13 +86,13 @@ class Game:
                 character_grid.append(character_row)
                 i+=1
             temp = Board(character_grid)
-            self.levels.append(temp)
+            lst.append(temp)
 
     def run_game(self):
         """Main loop for the game. it will keep running until the game is done
-        There are 4 main types of events, game is being paused (pulls up paused menu), 
-        game just started or newgame button was clicked, pulling the main start menu, 
-        and game is being played. so when flipping the board buttons need to be drawn"""
+        There are 5 main types of events, game is being paused (pulls up paused menu), 
+        game just started or newgame button was clicked, checking answers with check button, 
+        and game is being played, and Info screen shown. """
         # Start the main loop for the game
         while True:
             # call a method to check to see if any keyboard events have occurred
@@ -90,17 +101,31 @@ class Game:
 
             if self.game_paused:
                 self._paused()
+            elif self.check: 
+                if self.check_answers(): 
+                    print("You win")
+                    self.current_level +=1
+                    self.characters = self.levels[self.current_level].GetBoard()
+                else:
+                    print("you suck ")
+                self.check = False
             else:
                 for row in range(len(self.characters)): # draw the characters on the screen
                     for character in range(len(self.characters[row])):
                         self.character_update(row,character)
                         self.draw_character_text(self.characters[row][character])
+                if self.check_button.draw():
+                    self.check = True
+
                 for button_index in range(len(self.color_buttons)):
                     if self.color_buttons[button_index].draw(): #see which button color is selected and set all others to False
                         self.colors_index = [False, False, False, False, False, False, False, False, False]
                         self.colors_index[button_index] = not self.colors_index[button_index]
 
             pygame.display.flip()
+    
+    def check_answers(self): 
+        return self.characters == self.answers[self.current_level].GetBoard()
     
 
     def character_update(self,i, j):

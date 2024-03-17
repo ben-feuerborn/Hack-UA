@@ -39,6 +39,10 @@ class Character:
         """sets the color"""
         self._color = color
     
+    # special method for comparing character objects
+    def __eq__(self, other): 
+        return self._letter.lower() == other._letter.lower() and self._color == other._color
+    
     def __str__(self):
         return self._letter
 

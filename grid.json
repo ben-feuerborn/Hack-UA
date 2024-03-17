@@ -2,6 +2,426 @@
      [
           [
                {
+                    "letter": "I",
+                    "color": "Medium Blue",
+                    "button": "na",
+                    "has_text": false,
+                    "color_change": false
+               },
+               {
+                    "letter": " ",
+                    "color": "Medium Blue",
+                    "button": "na",
+                    "has_text": true,
+                    "color_change": false
+               }
+          ],
+          [
+               {
+                    "letter": "A",
+                    "color": "Red",
+                    "button": "na",
+                    "has_text": false,
+                    "color_change": false
+               },
+               {
+                    "letter": " ",
+                    "color": "Red",
+                    "button": "na",
+                    "has_text": true,
+                    "color_change": false
+               }
+          ]
+     ],
+     [
+          [
+               {
+                    "letter": "S",
+                    "color": "Medium Blue",
+                    "button": "na",
+                    "has_text": false,
+                    "color_change": false
+               },
+               {
+                    "letter": "E",
+                    "color": "Green",
+                    "button": "na",
+                    "has_text": false,
+                    "color_change": false
+               },
+               {
+                    "letter": " ",
+                    "color": "Default",
+                    "button": "na",
+                    "has_text": true,
+                    "color_change": true
+               }
+          ],
+          [
+               {
+                    "letter": " ",
+                    "color": "Default",
+                    "button": "na",
+                    "has_text": true,
+                    "color_change": true
+               },
+               {
+                    "letter": " ",
+                    "color": "Medium Blue",
+                    "button": "na",
+                    "has_text": true,
+                    "color_change": false
+               },
+               {
+                    "letter": " ",
+                    "color": "Green",
+                    "button": "na",
+                    "has_text": true,
+                    "color_change": false
+               }
+          ],
+          [
+               {
+                    "letter": "S",
+                    "color": "Red",
+                    "button": "na",
+                    "has_text": false,
+                    "color_change": false
+               },
+               {
+                    "letter": " ",
+                    "color": "Default",
+                    "button": "na",
+                    "has_text": true,
+                    "color_change": true
+               },
+               {
+                    "letter": " ",
+                    "color": "Red",
+                    "button": "na",
+                    "has_text": true,
+                    "color_change": false
+               }
+          ]
+     ],
+     [
+          [
+               {
+                    "letter": "S",
+                    "color": "Medium Blue",
+                    "button": "na",
+                    "has_text": false,
+                    "color_change": false
+               },
+               {
+                    "letter": " ",
+                    "color": "Default",
+                    "button": "na",
+                    "has_text": true,
+                    "color_change": true
+               },
+               {
+                    "letter": " ",
+                    "color": "Default",
+                    "button": "na",
+                    "has_text": true,
+                    "color_change": true
+               }
+          ],
+          [
+               {
+                    "letter": " ",
+                    "color": "Default",
+                    "button": "na",
+                    "has_text": true,
+                    "color_change": true
+               },
+               {
+                    "letter": "C",
+                    "color": "Red",
+                    "button": "na",
+                    "has_text": false,
+                    "color_change": false
+               },
+               {
+                    "letter": " ",
+                    "color": "Medium Blue",
+                    "button": "na",
+                    "has_text": true,
+                    "color_change": false
+               }
+          ],
+          [
+               {
+                    "letter": " ",
+                    "color": "Default",
+                    "button": "na",
+                    "has_text": true,
+                    "color_change": true
+               },
+               {
+                    "letter": " ",
+                    "color": "Default",
+                    "button": "na",
+                    "has_text": true,
+                    "color_change": true
+               },
+               {
+                    "letter": " ",
+                    "color": "Red",
+                    "button": "na",
+                    "has_text": true,
+                    "color_change": false
+               }
+          ]
+     ],
+     [
+          [
+               {
+                    "letter": "C",
+                    "color": "Light Blue",
+                    "button": "na",
+                    "has_text": false,
+                    "color_change": false
+               },
+               {
+                    "letter": "G",
+                    "color": "Red",
+                    "button": "na",
+                    "has_text": false,
+                    "color_change": false
+               },
+               {
+                    "letter": " ",
+                    "color": "Default",
+                    "button": "na",
+                    "has_text": true,
+                    "color_change": true
+               },
+               {
+                    "letter": " ",
+                    "color": "Default",
+                    "button": "na",
+                    "has_text": true,
+                    "color_change": true
+               }
+          ],
+          [
+               {
+                    "letter": " ",
+                    "color": "Default",
+                    "button": "na",
+                    "has_text": true,
+                    "color_change": true
+               },
+               {
+                    "letter": " ",
+                    "color": "Default",
+                    "button": "na",
+                    "has_text": true,
+                    "color_change": true
+               },
+               {
+                    "letter": "B",
+                    "color": "Green",
+                    "button": "na",
+                    "has_text": false,
+                    "color_change": false
+               },
+               {
+                    "letter": " ",
+                    "color": "Default",
+                    "button": "na",
+                    "has_text": true,
+                    "color_change": true
+               }
+          ],
+          [
+               {
+                    "letter": " ",
+                    "color": "Default",
+                    "button": "na",
+                    "has_text": true,
+                    "color_change": true
+               },
+               {
+                    "letter": " ",
+                    "color": "Default",
+                    "button": "na",
+                    "has_text": true,
+                    "color_change": true
+               },
+               {
+                    "letter": "R",
+                    "color": "Dark Blue",
+                    "button": "na",
+                    "has_text": false,
+                    "color_change": false
+               },
+               {
+                    "letter": " ",
+                    "color": "Red",
+                    "button": "na",
+                    "has_text": true,
+                    "color_change": false
+               }
+          ],
+          [
+               {
+                    "letter": " ",
+                    "color": "Light Blue",
+                    "button": "na",
+                    "has_text": true,
+                    "color_change": false
+               },
+               {
+                    "letter": " ",
+                    "color": "Green",
+                    "button": "na",
+                    "has_text": true,
+                    "color_change": false
+               },
+               {
+                    "letter": " ",
+                    "color": "Default",
+                    "button": "na",
+                    "has_text": true,
+                    "color_change": true
+               },
+               {
+                    "letter": " ",
+                    "color": "Dark Blue",
+                    "button": "na",
+                    "has_text": true,
+                    "color_change": false
+               }
+          ]
+     ],
+     [
+          [
+               {
+                    "letter": "R",
+                    "color": "Medium Blue",
+                    "button": "na",
+                    "has_text": false,
+                    "color_change": false
+               },
+               {
+                    "letter": " ",
+                    "color": "Default",
+                    "button": "na",
+                    "has_text": true,
+                    "color_change": true
+               },
+               {
+                    "letter": " ",
+                    "color": "Default",
+                    "button": "na",
+                    "has_text": true,
+                    "color_change": true
+               },
+               {
+                    "letter": "C",
+                    "color": "Red",
+                    "button": "na",
+                    "has_text": false,
+                    "color_change": false
+               }
+          ],
+          [
+               {
+                    "letter": " ",
+                    "color": "Default",
+                    "button": "na",
+                    "has_text": true,
+                    "color_change": true
+               },
+               {
+                    "letter": " ",
+                    "color": "Green",
+                    "button": "na",
+                    "has_text": true,
+                    "color_change": false
+               },
+               {
+                    "letter": " ",
+                    "color": "Default",
+                    "button": "na",
+                    "has_text": true,
+                    "color_change": true
+               },
+               {
+                    "letter": " ",
+                    "color": "Default",
+                    "button": "na",
+                    "has_text": true,
+                    "color_change": true
+               }
+          ],
+          [
+               {
+                    "letter": " ",
+                    "color": "Default",
+                    "button": "na",
+                    "has_text": true,
+                    "color_change": true
+               },
+               {
+                    "letter": " ",
+                    "color": "Red",
+                    "button": "na",
+                    "has_text": true,
+                    "color_change": false
+               },
+               {
+                    "letter": " ",
+                    "color": "Medium Blue",
+                    "button": "na",
+                    "has_text": true,
+                    "color_change": false
+               },
+               {
+                    "letter": " ",
+                    "color": "Default",
+                    "button": "na",
+                    "has_text": true,
+                    "color_change": true
+               }
+          ],
+          [
+               {
+                    "letter": "G",
+                    "color": "Green",
+                    "button": "na",
+                    "has_text": false,
+                    "color_change": false
+               },
+               {
+                    "letter": " ",
+                    "color": "Default",
+                    "button": "na",
+                    "has_text": true,
+                    "color_change": true
+               },
+               {
+                    "letter": " ",
+                    "color": "Default",
+                    "button": "na",
+                    "has_text": true,
+                    "color_change": true
+               },
+               {
+                    "letter": " ",
+                    "color": "Default",
+                    "button": "na",
+                    "has_text": true,
+                    "color_change": true
+               }
+          ]
+     ],
+     [
+          [
+               {
                     "letter": "N",
                     "color": "Red",
                     "button": "na",
