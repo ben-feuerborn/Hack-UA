@@ -82,7 +82,7 @@
           ],
           [
                {
-                    "letter": "S",
+                    "letter": "R",
                     "color": "Red",
                     "button": "na",
                     "has_text": false,
@@ -137,10 +137,10 @@
                     "color_change": true
                },
                {
-                    "letter": "C",
+                    "letter": " ",
                     "color": "Red",
                     "button": "na",
-                    "has_text": false,
+                    "has_text": true,
                     "color_change": false
                },
                {
@@ -167,10 +167,10 @@
                     "color_change": true
                },
                {
-                    "letter": " ",
+                    "letter": "H",
                     "color": "Red",
                     "button": "na",
-                    "has_text": true,
+                    "has_text": false,
                     "color_change": false
                }
           ]

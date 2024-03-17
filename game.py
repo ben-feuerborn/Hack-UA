@@ -39,7 +39,7 @@ class Game:
 
         # creating the board with levels 
 
-        self.current_level = 0 # keeps track of which level is curren _________________________________change this with new game
+        self.current_level = 4 # keeps track of which level is curren _________________________________change this with new game
         self.levels = []
         json_file = "grid.json"
         self.load_levels(json_file,self.levels)
@@ -78,6 +78,7 @@ class Game:
         j = 0
         for grid in data:
             character_grid = []
+            i=0
             for row in grid:
                 character_row = []
                 j=0
@@ -112,12 +113,9 @@ class Game:
 
                     self.screen.fill(self.bg_color)
                     text_surface = self.base_font.render(f"Moving on to Level {self.current_level+1}", True, (0,0,0))
-                    self.screen.blit(text_surface, (self.screen_width/2,(self.screen_height/4)*2))
+                    self.screen.blit(text_surface, (self.screen_width/2,self.screen_height/2))
                     pygame.display.flip() 
                     time.sleep(1)
-                    print("You win")
-                else:
-                    print("you suck ")
                 self.check = False
             else:
                 for row in range(len(self.characters)): # draw the characters on the screen
@@ -146,7 +144,8 @@ class Game:
                     x = False
                     self.characters[i][j].SetLetter(" ")
                     if self.characters[i][j].get_color_change():
-                        self.characters[i][j].SetColor("Default")
+                        new_image = pygame.image.load("Images/Default Key.png").convert_alpha() #opens up new image of default color
+                        self.characters[i][j].change_button_color(new_image, "Default") # updates the buttons color
         return x
     
 
