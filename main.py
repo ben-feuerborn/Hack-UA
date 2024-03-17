@@ -56,11 +56,11 @@ def make_grid(grid_size):
     
     # Serialize the grid to JSON
     serialized_grid = [[{"letter": char._letter, "color": char._color, "button": char._button, "has_text": char._has_text, "color_change" :char._color_change} for char in row] for row in grid]
-    levels = []
-    levels.append(serialized_grid)
+    
+
     # Write JSON data to a file
     
-    with open("grid.json", "w") as json_file:
-        json.dump(levels, json_file, indent=5) 
+    with open("currLevel.json", "w") as json_file:
+        json.dump(serialized_grid, json_file, indent=4) 
 
 main()
