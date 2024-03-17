@@ -39,7 +39,7 @@ class Game:
 
         # creating the board with levels 
 
-        self.current_level = 4 # keeps track of which level is curren _________________________________change this with new game
+        self.current_level = 0 # keeps track of which level is curren _________________________________change this with new game
         self.levels = []
         json_file = "grid.json"
         self.load_levels(json_file,self.levels)
@@ -67,6 +67,14 @@ class Game:
         button = Button(900, 600, check_image, 0.625, self)
         self.check_button = button
 
+        #main menu
+        self.main_menu = True
+        self.info_menu = False
+        new_game_image = pygame.image.load("images/Menu/New Game Solid.png").convert_alpha() 
+        self.main_new_button = Button(self.screen_width/2,self.screen_height/5 *2, new_game_image,1,self)
+        self.main_info_button = Button(self.screen_width/2,(self.screen_height/5)*3,info_image,1,self)
+        self.main_quit_button = Button(self.screen_width/2,(self.screen_height/5)*4,quit_image,1,self)
+        self.title_image = pygame.image.load("images/Menu/Word-Flow Logo.png").convert_alpha()
         
 
     def load_levels(self, json_file,lst):
@@ -103,8 +111,9 @@ class Game:
             # call a method to check to see if any keyboard events have occurred
             self.screen.fill(self.bg_color)
             self._check_events()
-
-            if self.game_paused:
+            if self.main_menu: 
+                self._main_menu()
+            elif self.game_paused:
                 self._paused()
             elif self.check: 
                 if self.check_answers(): # answer is right, moving on to next level
@@ -113,9 +122,9 @@ class Game:
 
                     self.screen.fill(self.bg_color)
                     text_surface = self.base_font.render(f"Moving on to Level {self.current_level+1}", True, (0,0,0))
-                    self.screen.blit(text_surface, (self.screen_width/2,self.screen_height/2))
+                    self.screen.blit(text_surface, ((self.screen_width/2)-90,self.screen_height/2))
                     pygame.display.flip() 
-                    time.sleep(1)
+                    time.sleep(1.5)
                 self.check = False
             else:
                 for row in range(len(self.characters)): # draw the characters on the screen
@@ -134,6 +143,20 @@ class Game:
 
             pygame.display.flip()
     
+    def _main_menu(self): 
+        pass
+        image_width, image_height = self.title_image.get_rect().size
+        self.screen.blit(self.title_image, ((self.screen_width-image_width)/2, (self.screen_height-image_height)/14))
+        if self.main_new_button.draw(): 
+            self.main_menu = False
+            self.current_level = 0 
+            self.characters = self.levels[self.current_level].GetBoard()
+        elif self.main_info_button.draw(): 
+            self.info_menu = True
+        elif self.main_quit_button.draw(): 
+            sys.exit()
+        
+
     def check_answers(self): 
         """Checks to see if answers are correct, if they are returns true, if not 
         returns false and changes the color back to default of wront characters"""
