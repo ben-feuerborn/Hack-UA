@@ -24,11 +24,11 @@ class Game:
                 
         #if game is paused
         self.game_paused = False
-        continue_image = pygame.image.load("images/continue.png").convert_alpha()
-        quit_image = pygame.image.load("images/quit.png").convert_alpha()
-        new_game_image = pygame.image.load("images/newGame.png").convert_alpha()
-        self.continue_button = Button(self.screen_width/2,self.screen_height/4, continue_image,1,self)
-        self.new_game_button = Button(self.screen_width/2,(self.screen_height/4)*2,new_game_image,1,self)
+        continue_image = pygame.image.load("images/menu assets/Load Game Solid.png").convert_alpha()
+        quit_image = pygame.image.load("images/menu assets/Quit Solid.png").convert_alpha()
+        new_game_image = pygame.image.load("images/menu assets/New Game Solid.png").convert_alpha()
+        self.new_game_button = Button(self.screen_width/2,self.screen_height/4,new_game_image,1,self)
+        self.continue_button = Button(self.screen_width/2,(self.screen_height/4)*2,continue_image,1,self)
         self.quit_button = Button(self.screen_width/2,(self.screen_height/4)*3,quit_image,1,self)
 
         # creating the board
