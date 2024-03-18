@@ -38,14 +38,22 @@ class Game:
         self.info_button = Button(self.screen_width/2,(self.screen_height/4)*2,info_image,1,self)
         self.quit_button = Button(self.screen_width/2,(self.screen_height/4)*3,quit_image,1,self)
 
-        # attributes and buttons used for the main and info menus #FIXME  needs info menu ___________________________________________________________
+        # attributes and buttons used for the main and info menus 
         self.main_menu = True
-        self.info_menu = False
+        self.info_menu2 = False # second page of the menu
+        self.info_menu = False 
         new_game_image = pygame.image.load("images/Menu/New Game Solid.png").convert_alpha() 
         self.main_new_button = Button(self.screen_width/2,self.screen_height/5 *2, new_game_image,1,self)
         self.main_info_button = Button(self.screen_width/2,(self.screen_height/5)*3,info_image,1,self)
         self.main_quit_button = Button(self.screen_width/2,(self.screen_height/5)*4,quit_image,1,self)
         self.title_image = pygame.image.load("images/Menu/Word-Flow Logo.png").convert_alpha()
+        exit_image = pygame.image.load("images/Menu/Exit Button.png").convert_alpha() 
+        self.exit_button = Button(self.screen_width-70, 50,exit_image, 0.6, self)
+        next_image = pygame.image.load("images/Menu/Next Button.png").convert_alpha() 
+        self.next_button = Button(1000,700,next_image, 0.6, self)
+        back_button = pygame.image.load("images/Menu/Back Button.png").convert_alpha() 
+        self.back_button = Button(200,700,back_button, 0.6, self)
+
 
         # creating the base font for the "character" objects (AKA each cell) 
         self.base_font = pygame.font.Font(None, 32)
@@ -133,7 +141,11 @@ class Game:
             self.screen.fill(self.bg_color) # fill in background
             self._check_events() #checks for special keyboard events
 
-            if self.main_menu: # if main menu should be pulled up
+            if self.info_menu2: # if the second page of the menu should be up
+                self._info_menu2()
+            elif self.info_menu: #if the info menu should be up
+                self._info_menu()
+            elif self.main_menu: # if main menu should be pulled up
                 self._main_menu()
             elif self.game_paused: # if the paused menu should be pulled up
                 self._paused()
@@ -165,6 +177,25 @@ class Game:
                         self.colors_index[button_index] = not self.colors_index[button_index]
 
             pygame.display.flip() # flip the image to show updates
+
+    def _info_menu(self):
+        """Displays the info menu of the game which has two pages, 
+        each accessed with the next and back bottom in the bottom of the page
+        the info button is exited once the exit button is clicked"""
+        if self.exit_button.draw(): 
+            self.info_menu = False
+        elif self.next_button.draw():
+            self.info_menu2 = True  
+
+
+    def _info_menu2(self):
+        """Shows second page in the info menu"""
+        self.screen.fill((255,0,0))
+        if self.back_button.draw(): 
+            self.info_menu2 = False
+        elif self.exit_button.draw(): 
+            self.info_menu = False
+            self.info_menu2 = False
     
     def _main_menu(self): 
         """Displays the main starting menu of the game, with options to pull up instructions
@@ -260,12 +291,15 @@ class Game:
         self.screen.fill(self.bg_color)
         if self.info_button.draw():
             time.sleep(0.2) # stops program temporarily to avoid problems with colission points 
+            self.info_menu = True
             self.game_paused = False
         if self.quit_button.draw():
             sys.exit()
         if self.new_game_button.draw():  # pulls up the main menu again for players to restart the game
             self.game_paused = False
             self.main_menu = True
+        if self.exit_button.draw(): 
+            self.game_paused = False
 
 
     def _check_keydown_events(self, event):
