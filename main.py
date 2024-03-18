@@ -1,9 +1,9 @@
-
+"""This main file was used for creating the JSON files with the answers and levels"""
 from board import *
 import json
 
 
-def print_grid(grid):
+def print_grid(grid): # debugging
     """Prints a grid"""
     for i in grid:
         for j in i:
