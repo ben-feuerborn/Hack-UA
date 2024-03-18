@@ -187,15 +187,8 @@ class Game:
                 if self.show_answers_button.draw(): # checks if user wants to show the answers
                     self.characters = self.answers[self.current_level].GetBoard()
                     self.checked = True
-                font = pygame.font.Font("slkscr.ttf", 40) # displays the category
-                text_surface = font.render(f"Category:", True, (0,0,0))
-                text_surface2 = font.render(f"{self.levels[self.current_level].GetCategory()}", True, (0,0,0))
-                self.screen.blit(text_surface, (200, 600))
-                self.screen.blit(text_surface2, (200, 650))
-                for button_index in range(len(self.color_buttons)): # draws color buttons
-                    if self.color_buttons[button_index].draw(): # checks which button was last pressed
-                        self.colors_index = [False, False, False, False, False, False, False, False, False]
-                        self.colors_index[button_index] = not self.colors_index[button_index]
+                self.draw_categories() # draw the category on the screen
+                self.draw_color_buttons() # draw the color buttons on the screen
 
             pygame.display.flip() # flip the image to show updates
 
@@ -216,6 +209,7 @@ class Game:
                 time.sleep(1)
         self.check = False 
 
+    # Below are all the different menu related functions 
     def _info_menu(self):
         """Displays the info menu of the game which has two pages, 
         each accessed with the next and back bottom in the bottom of the page
@@ -253,6 +247,22 @@ class Game:
         elif self.main_quit_button.draw():  #check if quit button was selected 
             sys.exit()
         time.sleep(0.05) # stops temporarily to avoid collision problems
+    
+    def _paused(self):
+        """Draw the pause screen menu and give 3 different options to the user
+        to continue, quit, or start a new game"""
+        self.screen.fill(self.bg_color)
+        if self.info_button.draw():
+            time.sleep(0.1) # stops program temporarily to avoid problems with colission points 
+            self.info_menu = True
+            self.game_paused = False
+        if self.quit_button.draw():
+            sys.exit()
+        if self.new_game_button.draw():  # pulls up the main menu again for players to restart the game
+            self.game_paused = False
+            self.main_menu = True
+        if self.exit_button.draw(): 
+            self.game_paused = False
         
 
     def check_answers(self): 
@@ -281,35 +291,28 @@ class Game:
 
         if self.characters[i][j].get_button().draw(): # drawing button and seeing if it is selected
             if not self.checked: # if player didn't check the answers
-                if self.characters[i][j].get_color_change(): # Checks if the character can have its color changed
-                    for color in range(len(self.colors_index)): 
-                        if self.colors_index[color]: 
-                            self.characters[i][j].SetColor(self.colors_index[color]) # changes the color attribute once cell changes color
-                            new_image = pygame.image.load("Images/"+self.colors[color]+" Key.png").convert_alpha() 
-                            self.characters[i][j].change_button_color(new_image, self.colors[color]) # updates the buttons color with a new image
-                
+                self.update_character_color(i,j)                
                 # checks if the button pressed has a modifiable character (isn't a given start or end, and isn't one of the color select buttons)
                 if self.characters[i][j].get_has_text(): 
-                    text = self.characters[i][j].get_letter()
                     running = True
-                    while running: # player stuck in writting mode until he enters "enter" to select new character or selects a cell
+                    while running: # player stuck in "writing mode" until he enters "enter" to select new character or selects a cell
                         self.screen.fill(self.bg_color)
-                        # redraw up the grid so it doesn't get covered
-                        for row in self.characters: 
-                            for chars in row:
-                                if chars.get_button().draw():
-                                    running = False # if user selects other cell it kicks out and saves current work
-                                self.draw_character_text(chars)
-                    
+                        self.draw_categories() # draw category in the screen
+    
                         # draw up the color buttons as well so they dont get covered also kicks player out of writting mode if selected
-                        for button_index in range(len(self.color_buttons)): 
-                            if self.color_buttons[button_index].draw():
-                                running = False 
-                        font = pygame.font.Font("slkscr.ttf", 40)
-                        text_surface = font.render(f"Category:", True, (0,0,0))
-                        text_surface2 = font.render(f"{self.levels[self.current_level].GetCategory()}", True, (0,0,0))
-                        self.screen.blit(text_surface, (200, 600))
-                        self.screen.blit(text_surface2, (200, 650))
+                        running = not self.draw_color_buttons()
+
+                        
+                        # redraw up the grid so it doesn't get covered
+                        for indexi in range(len(self.characters)): 
+                            for indexj in range(len(self.characters[indexi])):
+                                if self.characters[indexi][indexj].get_button().draw():
+                                    i=indexi
+                                    j=indexj
+                                    self.update_character_color(i,j)
+                                self.draw_character_text(self.characters[indexi][indexj]) # draw each characters text
+
+                        text = self.characters[i][j].get_letter()
                         for event in pygame.event.get(): #get user input text 
                             if event.type == pygame.QUIT:
                                 sys.exit()
@@ -319,35 +322,46 @@ class Game:
                             # handle special keys
                             if event.type == pygame.KEYDOWN: 
                                 if event.key == pygame.K_RETURN:
-                                    print(text)  # Print the input text
                                     running = False
                                 elif event.key == pygame.K_BACKSPACE:
                                     text = ""
                         self.characters[i][j].SetLetter(text) # updates the character for the given cell
+
                         pygame.display.flip()
+
+    def draw_color_buttons(self):
+        """draws the button indexes and checks if they were selected, if so it changes the color of the cell accordingly
+        returns true if one was pressed, false if not"""
+        for button_index in range(len(self.color_buttons)): # draws color buttons
+            if self.color_buttons[button_index].draw(): # checks which button was last pressed
+                self.colors_index = [False, False, False, False, False, False, False, False, False]
+                self.colors_index[button_index] = not self.colors_index[button_index]
+                return True
+                        
+    def draw_categories(self): 
+        """displays the correct category,  according to whatever level it is, on the screen"""
+        font = pygame.font.Font("slkscr.ttf", 40)
+        text_surface = font.render(f"Category:", True, (0,0,0))
+        text_surface2 = font.render(f"{self.levels[self.current_level].GetCategory()}", True, (0,0,0))
+        self.screen.blit(text_surface, (200, 600))
+        self.screen.blit(text_surface2, (200, 650))
+
+
+    def update_character_color(self,i,j):
+        """function takes in two integers representing the row and column indexes of the character
+        in the self.characters grid. It then changes its color appropriately"""
+        if self.characters[i][j].get_color_change(): # Checks if the character can have its color changed
+            for color in range(len(self.colors_index)): 
+                if self.colors_index[color]: 
+                    self.characters[i][j].SetColor(self.colors_index[color]) # changes the color attribute once cell changes color
+                    new_image = pygame.image.load("Images/"+self.colors[color]+" Key.png").convert_alpha() 
+                    self.characters[i][j].change_button_color(new_image, self.colors[color]) # updates the buttons color with a new image
 
 
     def draw_character_text(self, character):
         """Given a character it draws on the screen its text attribute over its image"""
         text_surface = self.base_font.render(character.get_letter(), True, (0,0,0))
         self.screen.blit(text_surface, (character.get_button().rect.x + 35, character.get_button().rect.y +32))
-
-
-    def _paused(self):
-        """Draw the pause screen menu and give 3 different options to the user
-        to continue, quit, or start a new game"""
-        self.screen.fill(self.bg_color)
-        if self.info_button.draw():
-            time.sleep(0.1) # stops program temporarily to avoid problems with colission points 
-            self.info_menu = True
-            self.game_paused = False
-        if self.quit_button.draw():
-            sys.exit()
-        if self.new_game_button.draw():  # pulls up the main menu again for players to restart the game
-            self.game_paused = False
-            self.main_menu = True
-        if self.exit_button.draw(): 
-            self.game_paused = False
 
 
     def _check_keydown_events(self, event):
@@ -359,14 +373,12 @@ class Game:
                 self.game_paused = True
         
     def _check_events(self):
-        """Checks for special events such as closing the tab and keydown events"""
+        """Checks for special events such as closing the tab and keydown events."""
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 sys.exit()
-            # Did the player press the right or left arrow key?
             elif event.type == pygame.KEYDOWN:
                 self._check_keydown_events(event)
-            # Did the player stop holding down the arrow key?
 
 
 
