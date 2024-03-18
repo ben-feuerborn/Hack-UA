@@ -84,8 +84,12 @@ class Game:
         # initializes "check" button that players will use in order to check if their work is correct
         self.check = False
         check_image = pygame.image.load("images/Menu/Check Solid.png").convert_alpha()
-        button = Button(900, 650, check_image, 0.625, self)
-        self.check_button = button
+        self.check_button =  Button(1000,680, check_image, 0.625, self)
+
+
+        # used to see if user did all levels
+        self.last_level = len(self.levels)
+
 
 
         
@@ -120,8 +124,8 @@ class Game:
                 j=0
                 for item in row: #iterating per object in a given column 
                     character_image = pygame.image.load("images/"+item['color']+" Key.png").convert_alpha() # starts a cell in the given color
-                    image_y = grid_x + (j * (grid_cell_width + grid_padding)) + grid_padding 
-                    image_x = grid_y + (i * (grid_cell_height + grid_padding)) + grid_padding # location of the button in the grid
+                    image_y = (grid_x + (j * (grid_cell_width + grid_padding)) + grid_padding ) - 135
+                    image_x = (grid_y + (i * (grid_cell_height + grid_padding)) + grid_padding) -40 # location of the button in the grid
                     character_button = Button(image_x,image_y,character_image,0.4,self)
                     character = Character(item['letter'], item['color'], character_button, item['has_text'], item['color_change'])
                     character_row.append(character)
@@ -141,7 +145,14 @@ class Game:
             self.screen.fill(self.bg_color) # fill in background
             self._check_events() #checks for special keyboard events
 
-            if self.info_menu2: # if the second page of the menu should be up
+            if self.current_level == self.last_level: # if player won the game
+                print("Hi")
+                font = pygame.font.Font("slkscr.ttf", 50)
+                text_surface = font.render("You won!", True, (0,0,0))
+                self.screen.blit(text_surface, ((self.screen_width-150)/2 - 100,(self.screen_height-50)/2))
+                pygame.display.flip()
+                break
+            elif self.info_menu2: # if the second page of the menu should be up
                 self._info_menu2()
             elif self.info_menu: #if the info menu should be up
                 self._info_menu()
@@ -210,6 +221,7 @@ class Game:
             self.info_menu = True
         elif self.main_quit_button.draw():  #check if quit button was selected 
             sys.exit()
+        time.sleep(0.05) # stops temporarily to avoid collision problems
         
 
     def check_answers(self): 
@@ -290,7 +302,7 @@ class Game:
         to continue, quit, or start a new game"""
         self.screen.fill(self.bg_color)
         if self.info_button.draw():
-            time.sleep(0.2) # stops program temporarily to avoid problems with colission points 
+            time.sleep(0.1) # stops program temporarily to avoid problems with colission points 
             self.info_menu = True
             self.game_paused = False
         if self.quit_button.draw():

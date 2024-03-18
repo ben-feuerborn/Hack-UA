@@ -422,6 +422,128 @@
     [
         [
             {
+                "letter": "B",
+                "color": "Medium Blue",
+                "button": "na",
+                "has_text": false,
+                "color_change": false
+            },
+            {
+                "letter": "h",
+                "color": "Red",
+                "button": "na",
+                "has_text": true,
+                "color_change": false
+            },
+            {
+                "letter": "s",
+                "color": "Red",
+                "button": "na",
+                "has_text": true,
+                "color_change": true
+            },
+            {
+                "letter": "a",
+                "color": "Red",
+                "button": "na",
+                "has_text": true,
+                "color_change": true
+            }
+        ],
+        [
+            {
+                "letter": "o",
+                "color": "Medium Blue",
+                "button": "na",
+                "has_text": true,
+                "color_change": true
+            },
+            {
+                "letter": "o",
+                "color": "Medium Blue",
+                "button": "na",
+                "has_text": true,
+                "color_change": true
+            },
+            {
+                "letter": "m",
+                "color": "Medium Blue",
+                "button": "na",
+                "has_text": true,
+                "color_change": false
+            },
+            {
+                "letter": "l",
+                "color": "Red",
+                "button": "na",
+                "has_text": true,
+                "color_change": true
+            }
+        ],
+        [
+            {
+                "letter": "o",
+                "color": "Green",
+                "button": "na",
+                "has_text": true,
+                "color_change": true
+            },
+            {
+                "letter": "M",
+                "color": "Green",
+                "button": "na",
+                "has_text": false,
+                "color_change": false
+            },
+            {
+                "letter": "S",
+                "color": "Red",
+                "button": "na",
+                "has_text": false,
+                "color_change": false
+            },
+            {
+                "letter": "p",
+                "color": "Red",
+                "button": "na",
+                "has_text": true,
+                "color_change": true
+            }
+        ],
+        [
+            {
+                "letter": "o",
+                "color": "Green",
+                "button": "na",
+                "has_text": true,
+                "color_change": false
+            },
+            {
+                "letter": "p",
+                "color": "Dark Blue",
+                "button": "na",
+                "has_text": true,
+                "color_change": false
+            },
+            {
+                "letter": "o",
+                "color": "Dark Blue",
+                "button": "na",
+                "has_text": true,
+                "color_change": true
+            },
+            {
+                "letter": "P",
+                "color": "Dark Blue",
+                "button": "na",
+                "has_text": false,
+                "color_change": false
+            }
+        ]
+    ],
+    [
+        [
+            {
                 "letter": "N",
                 "color": "Red",
                 "button": "na",
@@ -603,6 +725,833 @@
                 "button": "na",
                 "has_text": true,
                 "color_change": true
+            }
+        ]
+    ],
+    [
+        [
+            {
+                "letter": "S",
+                "color": "Red",
+                "button": "na",
+                "has_text": false,
+                "color_change": false
+            },
+            {
+                "letter": "M",
+                "color": "Medium Blue",
+                "button": "na",
+                "has_text": false,
+                "color_change": false
+            },
+            {
+                "letter": "o",
+                "color": "Medium Blue",
+                "button": "na",
+                "has_text": true,
+                "color_change": true
+            },
+            {
+                "letter": "n",
+                "color": "Medium Blue",
+                "button": "na",
+                "has_text": true,
+                "color_change": true
+            },
+            {
+                "letter": "L",
+                "color": "Dark Blue",
+                "button": "na",
+                "has_text": false,
+                "color_change": false
+            }
+        ],
+        [
+            {
+                "letter": "n",
+                "color": "Red",
+                "button": "na",
+                "has_text": true,
+                "color_change": true
+            },
+            {
+                "letter": "D",
+                "color": "Green",
+                "button": "na",
+                "has_text": false,
+                "color_change": false
+            },
+            {
+                "letter": "e",
+                "color": "Medium Blue",
+                "button": "na",
+                "has_text": true,
+                "color_change": true
+            },
+            {
+                "letter": "k",
+                "color": "Medium Blue",
+                "button": "na",
+                "has_text": true,
+                "color_change": true
+            },
+            {
+                "letter": "i",
+                "color": "Dark Blue",
+                "button": "na",
+                "has_text": true,
+                "color_change": true
+            }
+        ],
+        [
+            {
+                "letter": "a",
+                "color": "Red",
+                "button": "na",
+                "has_text": true,
+                "color_change": true
+            },
+            {
+                "letter": "o",
+                "color": "Green",
+                "button": "na",
+                "has_text": true,
+                "color_change": true
+            },
+            {
+                "letter": "y",
+                "color": "Medium Blue",
+                "button": "na",
+                "has_text": true,
+                "color_change": false
+            },
+            {
+                "letter": "n",
+                "color": "Dark Blue",
+                "button": "na",
+                "has_text": true,
+                "color_change": false
+            },
+            {
+                "letter": "o",
+                "color": "Dark Blue",
+                "button": "na",
+                "has_text": true,
+                "color_change": true
+            }
+        ],
+        [
+            {
+                "letter": "k",
+                "color": "Red",
+                "button": "na",
+                "has_text": true,
+                "color_change": true
+            },
+            {
+                "letter": "g",
+                "color": "Green",
+                "button": "na",
+                "has_text": true,
+                "color_change": false
+            },
+            {
+                "letter": "n",
+                "color": "Pink",
+                "button": "na",
+                "has_text": true,
+                "color_change": false
+            },
+            {
+                "letter": "o",
+                "color": "Pink",
+                "button": "na",
+                "has_text": true,
+                "color_change": true
+            },
+            {
+                "letter": "o",
+                "color": "Pink",
+                "button": "na",
+                "has_text": true,
+                "color_change": true
+            }
+        ],
+        [
+            {
+                "letter": "e",
+                "color": "Red",
+                "button": "na",
+                "has_text": true,
+                "color_change": false
+            },
+            {
+                "letter": "R",
+                "color": "Pink",
+                "button": "na",
+                "has_text": false,
+                "color_change": false
+            },
+            {
+                "letter": "a",
+                "color": "Pink",
+                "button": "na",
+                "has_text": true,
+                "color_change": true
+            },
+            {
+                "letter": "c",
+                "color": "Pink",
+                "button": "na",
+                "has_text": true,
+                "color_change": true
+            },
+            {
+                "letter": "c",
+                "color": "Pink",
+                "button": "na",
+                "has_text": true,
+                "color_change": true
+            }
+        ]
+    ],
+    [
+        [
+            {
+                "letter": "e",
+                "color": "Green",
+                "button": "na",
+                "has_text": true,
+                "color_change": false
+            },
+            {
+                "letter": "C",
+                "color": "Red",
+                "button": "na",
+                "has_text": false,
+                "color_change": false
+            },
+            {
+                "letter": "H",
+                "color": "Medium Blue",
+                "button": "na",
+                "has_text": false,
+                "color_change": false
+            },
+            {
+                "letter": "a",
+                "color": "Red",
+                "button": "na",
+                "has_text": true,
+                "color_change": false
+            },
+            {
+                "letter": "C",
+                "color": "Yellow",
+                "button": "na",
+                "has_text": false,
+                "color_change": false
+            }
+        ],
+        [
+            {
+                "letter": "k",
+                "color": "Green",
+                "button": "na",
+                "has_text": true,
+                "color_change": true
+            },
+            {
+                "letter": "h",
+                "color": "Red",
+                "button": "na",
+                "has_text": true,
+                "color_change": true
+            },
+            {
+                "letter": "B",
+                "color": "Medium Blue",
+                "button": "na",
+                "has_text": true,
+                "color_change": true
+            },
+            {
+                "letter": "l",
+                "color": "Red",
+                "button": "na",
+                "has_text": true,
+                "color_change": true
+            },
+            {
+                "letter": "a",
+                "color": "Yellow",
+                "button": "na",
+                "has_text": true,
+                "color_change": true
+            }
+        ],
+        [
+            {
+                "letter": "i",
+                "color": "Green",
+                "button": "na",
+                "has_text": true,
+                "color_change": true
+            },
+            {
+                "letter": "i",
+                "color": "Red",
+                "button": "na",
+                "has_text": true,
+                "color_change": true
+            },
+            {
+                "letter": "o",
+                "color": "Medium Blue",
+                "button": "na",
+                "has_text": true,
+                "color_change": false
+            },
+            {
+                "letter": "i",
+                "color": "Red",
+                "button": "na",
+                "has_text": true,
+                "color_change": true
+            },
+            {
+                "letter": "t",
+                "color": "Yellow",
+                "button": "na",
+                "has_text": true,
+                "color_change": false
+            }
+        ],
+        [
+            {
+                "letter": "N",
+                "color": "Green",
+                "button": "na",
+                "has_text": false,
+                "color_change": false
+            },
+            {
+                "letter": "c",
+                "color": "Red",
+                "button": "na",
+                "has_text": true,
+                "color_change": true
+            },
+            {
+                "letter": "k",
+                "color": "Red",
+                "button": "na",
+                "has_text": true,
+                "color_change": true
+            },
+            {
+                "letter": "f",
+                "color": "Red",
+                "button": "na",
+                "has_text": true,
+                "color_change": true
+            },
+            {
+                "letter": "t",
+                "color": "Pink",
+                "button": "na",
+                "has_text": true,
+                "color_change": false
+            }
+        ],
+        [
+            {
+                "letter": "T",
+                "color": "Pink",
+                "button": "na",
+                "has_text": false,
+                "color_change": false
+            },
+            {
+                "letter": "a",
+                "color": "Pink",
+                "button": "na",
+                "has_text": true,
+                "color_change": true
+            },
+            {
+                "letter": "r",
+                "color": "Pink",
+                "button": "na",
+                "has_text": true,
+                "color_change": true
+            },
+            {
+                "letter": "g",
+                "color": "Pink",
+                "button": "na",
+                "has_text": true,
+                "color_change": true
+            },
+            {
+                "letter": "e",
+                "color": "Pink",
+                "button": "na",
+                "has_text": true,
+                "color_change": true
+            }
+        ]
+    ],
+    [
+        [
+            {
+                "letter": "R",
+                "color": "Dark Blue",
+                "button": "na",
+                "has_text": false,
+                "color_change": false
+            },
+            {
+                "letter": "i",
+                "color": "Dark Blue",
+                "button": "na",
+                "has_text": true,
+                "color_change": true
+            },
+            {
+                "letter": "c",
+                "color": "Dark Blue",
+                "button": "na",
+                "has_text": true,
+                "color_change": true
+            },
+            {
+                "letter": "e",
+                "color": "Dark Blue",
+                "button": "na",
+                "has_text": true,
+                "color_change": false
+            },
+            {
+                "letter": "B",
+                "color": "Red",
+                "button": "na",
+                "has_text": false,
+                "color_change": false
+            }
+        ],
+        [
+            {
+                "letter": "A",
+                "color": "Green",
+                "button": "na",
+                "has_text": false,
+                "color_change": false
+            },
+            {
+                "letter": "p",
+                "color": "Green",
+                "button": "na",
+                "has_text": true,
+                "color_change": true
+            },
+            {
+                "letter": "f",
+                "color": "Red",
+                "button": "na",
+                "has_text": true,
+                "color_change": false
+            },
+            {
+                "letter": "e",
+                "color": "Red",
+                "button": "na",
+                "has_text": true,
+                "color_change": true
+            },
+            {
+                "letter": "e",
+                "color": "Red",
+                "button": "na",
+                "has_text": true,
+                "color_change": true
+            }
+        ],
+        [
+            {
+                "letter": "P",
+                "color": "Medium Blue",
+                "button": "na",
+                "has_text": false,
+                "color_change": false
+            },
+            {
+                "letter": "p",
+                "color": "Green",
+                "button": "na",
+                "has_text": true,
+                "color_change": true
+            },
+            {
+                "letter": "l",
+                "color": "Green",
+                "button": "na",
+                "has_text": true,
+                "color_change": true
+            },
+            {
+                "letter": "E",
+                "color": "Pink",
+                "button": "na",
+                "has_text": false,
+                "color_change": false
+            },
+            {
+                "letter": "g",
+                "color": "Pink",
+                "button": "na",
+                "has_text": true,
+                "color_change": true
+            }
+        ],
+        [
+            {
+                "letter": "i",
+                "color": "Medium Blue",
+                "button": "na",
+                "has_text": true,
+                "color_change": true
+            },
+            {
+                "letter": "a",
+                "color": "Medium Blue",
+                "button": "na",
+                "has_text": true,
+                "color_change": false
+            },
+            {
+                "letter": "e",
+                "color": "Green",
+                "button": "na",
+                "has_text": true,
+                "color_change": false
+            },
+            {
+                "letter": "m",
+                "color": "Yellow",
+                "button": "na",
+                "has_text": true,
+                "color_change": false
+            },
+            {
+                "letter": "g",
+                "color": "Pink",
+                "button": "na",
+                "has_text": true,
+                "color_change": true
+            }
+        ],
+        [
+            {
+                "letter": "z",
+                "color": "Medium Blue",
+                "button": "na",
+                "has_text": true,
+                "color_change": true
+            },
+            {
+                "letter": "z",
+                "color": "Medium Blue",
+                "button": "na",
+                "has_text": true,
+                "color_change": true
+            },
+            {
+                "letter": "H",
+                "color": "Yellow",
+                "button": "na",
+                "has_text": false,
+                "color_change": false
+            },
+            {
+                "letter": "a",
+                "color": "Yellow",
+                "button": "na",
+                "has_text": true,
+                "color_change": true
+            },
+            {
+                "letter": "s",
+                "color": "Pink",
+                "button": "na",
+                "has_text": true,
+                "color_change": false
+            }
+        ]
+    ],
+    [
+        [
+            {
+                "letter": "a",
+                "color": "Pink",
+                "button": "na",
+                "has_text": true,
+                "color_change": true
+            },
+            {
+                "letter": "o",
+                "color": "Pink",
+                "button": "na",
+                "has_text": true,
+                "color_change": true
+            },
+            {
+                "letter": "M",
+                "color": "Pink",
+                "button": "na",
+                "has_text": false,
+                "color_change": false
+            },
+            {
+                "letter": "E",
+                "color": "Green",
+                "button": "na",
+                "has_text": false,
+                "color_change": false
+            },
+            {
+                "letter": "M",
+                "color": "Yellow",
+                "button": "na",
+                "has_text": false,
+                "color_change": false
+            },
+            {
+                "letter": "i",
+                "color": "Yellow",
+                "button": "na",
+                "has_text": true,
+                "color_change": true
+            }
+        ],
+        [
+            {
+                "letter": "n",
+                "color": "Pink",
+                "button": "na",
+                "has_text": true,
+                "color_change": true
+            },
+            {
+                "letter": "a",
+                "color": "Green",
+                "button": "na",
+                "has_text": true,
+                "color_change": false
+            },
+            {
+                "letter": "s",
+                "color": "Green",
+                "button": "na",
+                "has_text": true,
+                "color_change": true
+            },
+            {
+                "letter": "l",
+                "color": "Green",
+                "button": "na",
+                "has_text": true,
+                "color_change": true
+            },
+            {
+                "letter": "M",
+                "color": "Dark Blue",
+                "button": "na",
+                "has_text": false,
+                "color_change": false
+            },
+            {
+                "letter": "c",
+                "color": "Yellow",
+                "button": "na",
+                "has_text": true,
+                "color_change": true
+            }
+        ],
+        [
+            {
+                "letter": "a",
+                "color": "Pink",
+                "button": "na",
+                "has_text": true,
+                "color_change": false
+            },
+            {
+                "letter": "B",
+                "color": "Medium Blue",
+                "button": "na",
+                "has_text": false,
+                "color_change": false
+            },
+            {
+                "letter": "i",
+                "color": "Dark Blue",
+                "button": "na",
+                "has_text": true,
+                "color_change": false
+            },
+            {
+                "letter": "u",
+                "color": "Dark Blue",
+                "button": "na",
+                "has_text": true,
+                "color_change": true
+            },
+            {
+                "letter": "a",
+                "color": "Dark Blue",
+                "button": "na",
+                "has_text": true,
+                "color_change": true
+            },
+            {
+                "letter": "k",
+                "color": "Yellow",
+                "button": "na",
+                "has_text": true,
+                "color_change": true
+            }
+        ],
+        [
+            {
+                "letter": "G",
+                "color": "Light Blue",
+                "button": "na",
+                "has_text": false,
+                "color_change": false
+            },
+            {
+                "letter": "u",
+                "color": "Medium Blue",
+                "button": "na",
+                "has_text": true,
+                "color_change": true
+            },
+            {
+                "letter": "z",
+                "color": "Medium Blue",
+                "button": "na",
+                "has_text": true,
+                "color_change": true
+            },
+            {
+                "letter": "z",
+                "color": "Medium Blue",
+                "button": "na",
+                "has_text": true,
+                "color_change": false
+            },
+            {
+                "letter": "y",
+                "color": "Yellow",
+                "button": "na",
+                "has_text": true,
+                "color_change": false
+            },
+            {
+                "letter": "e",
+                "color": "Yellow",
+                "button": "na",
+                "has_text": true,
+                "color_change": true
+            }
+        ],
+        [
+            {
+                "letter": "o",
+                "color": "Light Blue",
+                "button": "na",
+                "has_text": true,
+                "color_change": true
+            },
+            {
+                "letter": "y",
+                "color": "Light Blue",
+                "button": "na",
+                "has_text": true,
+                "color_change": false
+            },
+            {
+                "letter": "W",
+                "color": "Red",
+                "button": "na",
+                "has_text": false,
+                "color_change": false
+            },
+            {
+                "letter": "o",
+                "color": "Red",
+                "button": "na",
+                "has_text": true,
+                "color_change": true
+            },
+            {
+                "letter": "o",
+                "color": "Red",
+                "button": "na",
+                "has_text": true,
+                "color_change": true
+            },
+            {
+                "letter": "d",
+                "color": "Red",
+                "button": "na",
+                "has_text": true,
+                "color_change": true
+            }
+        ],
+        [
+            {
+                "letter": "o",
+                "color": "Light Blue",
+                "button": "na",
+                "has_text": true,
+                "color_change": true
+            },
+            {
+                "letter": "f",
+                "color": "Light Blue",
+                "button": "na",
+                "has_text": true,
+                "color_change": true
+            },
+            {
+                "letter": "A",
+                "color": "Orange",
+                "button": "na",
+                "has_text": false,
+                "color_change": false
+            },
+            {
+                "letter": "b",
+                "color": "Orange",
+                "button": "na",
+                "has_text": true,
+                "color_change": true
+            },
+            {
+                "letter": "u",
+                "color": "Orange",
+                "button": "na",
+                "has_text": true,
+                "color_change": false
+            },
+            {
+                "letter": "y",
+                "color": "Red",
+                "button": "na",
+                "has_text": true,
+                "color_change": false
             }
         ]
     ]
