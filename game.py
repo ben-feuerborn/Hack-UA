@@ -238,10 +238,6 @@ class Game:
         self.screen.blit(self.title_image, ((self.screen_width-image_width)/2, (self.screen_height-image_height)/14)) # draw logo on the screen
         if self.main_new_button.draw():  # check if new game button was selected
             self.main_menu = False
-            self.current_level = 0 # reset the game to level 0
-            self.levels = [] # reset the levels
-            self.load_levels("grid.json",self.levels)
-            self.characters = self.levels[self.current_level].GetBoard()
         elif self.main_info_button.draw():  # check if info button was selected to pull up the info page
             self.info_menu = True
         elif self.main_quit_button.draw():  #check if quit button was selected 
@@ -260,6 +256,10 @@ class Game:
             sys.exit()
         if self.new_game_button.draw():  # pulls up the main menu again for players to restart the game
             self.game_paused = False
+            self.current_level = 0 # reset the game to level 0
+            self.levels = [] # reset the levels
+            self.load_levels("grid.json",self.levels)
+            self.characters = self.levels[self.current_level].GetBoard()
             self.main_menu = True
         if self.exit_button.draw(): 
             self.game_paused = False
@@ -302,7 +302,6 @@ class Game:
                         # draw up the color buttons as well so they dont get covered also kicks player out of writting mode if selected
                         running = not self.draw_color_buttons()
 
-                        
                         # redraw up the grid so it doesn't get covered
                         for indexi in range(len(self.characters)): 
                             for indexj in range(len(self.characters[indexi])):
@@ -313,7 +312,7 @@ class Game:
                                 self.draw_character_text(self.characters[indexi][indexj]) # draw each characters text
 
                         text = self.characters[i][j].get_letter()
-                        for event in pygame.event.get(): #get user input text 
+                        for event in pygame.event.get(): # get user input text  
                             if event.type == pygame.QUIT:
                                 sys.exit()
                             # handle text input
