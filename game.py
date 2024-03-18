@@ -1,3 +1,10 @@
+"""Authors: Giuseppe Pongelupe Giacoia
+Date: 03/17/2024
+Summary: This game.py file works with the button.py and board.py files and game level desriptions in "answers.json" and "grid.json" 
+to create a game where the user can select colors and letters to fill in a cell in a given grid. 
+The goal to win the game is to complete the given built in levels by connecting two given cells of a certain color by a continuous path of cells of the same color, 
+the path can be horizontal, vertical, and bent, but each cell only has at most 4 other adjacent cells (up, down, right and left), meaning that the path can't go diagonally. 
+Once a path is made with colors, users have to also spell out a word of the given category given the starting letter and end position."""
 
 import pygame
 from button import *
@@ -8,66 +15,30 @@ import time
 
 
 class Game: 
-    def __init__(self): 
-        
-        # Initialize the game, and create game resources
-        pygame.init()
-        self.base_font = pygame.font.Font(None, 32)
 
+    def __init__(self): 
+        pygame.init() # initializes pygame
+
+        # Setting up 
         self.screen_width = 1200
         self.screen_height = 800
         self.bg_color = (255, 255, 255)
-
-        # self.screen = pygame.display.set_mode((0, 0),pygame.FULLSCREEN)
         self.screen = pygame.display.set_mode((self.screen_width, self.screen_height))
-        self.screen_width = self.screen.get_rect().width
-        self.screen_height = self.screen.get_rect().height
-        #TITLE
         pygame.display.set_caption("Word-Flow")
                 
-        #if game is paused
+        # attributes to be used if game is paused / in order to pause the game
         self.game_paused = False
+        # loading in images and initializing button objects for the paused menu
         pause_button_image = pygame.image.load("images/Menu/Pause Button Solid.png").convert_alpha()
-        self.pause_button = Button(self.screen_width-70, 50, pause_button_image,0.6,self) 
-
-        info_image = pygame.image.load("images/Menu/Info Solid.png").convert_alpha()
+        self.pause_button = Button(self.screen_width-70, 50, pause_button_image,0.6,self)  
+        info_image = pygame.image.load("images/Menu/Info Solid.png").convert_alpha() 
         quit_image = pygame.image.load("images/Menu/Quit Solid.png").convert_alpha()
         new_game_image = pygame.image.load("images/Menu/New Game Solid.png").convert_alpha()
-        self.new_game_button = Button(self.screen_width/2,self.screen_height/4, new_game_image,1,self)
+        self.new_game_button = Button(self.screen_width/2,self.screen_height/4, new_game_image,1,self) 
         self.info_button = Button(self.screen_width/2,(self.screen_height/4)*2,info_image,1,self)
         self.quit_button = Button(self.screen_width/2,(self.screen_height/4)*3,quit_image,1,self)
 
-        # creating the board with levels 
-
-        self.current_level = 0 # keeps track of which level is curren _________________________________change this with new game
-        self.levels = []
-        json_file = "grid.json"
-        self.load_levels(json_file,self.levels)
-
-        #creating answers
-        self.answers = []
-        json_answer = "answers.json"
-        self.load_levels(json_answer,self.answers)
-
-        #self.characters will always be the current level 
-        self.characters = self.levels[self.current_level].GetBoard()
-
-        #creating buttons for color selection
-        self.colors = ["Dark Blue", "Green", "Light Blue", "Medium Blue", "Orange", "Pink", "Red", "Yellow", "Default"]
-        self.color_buttons = []
-        self.colors_index = [False, False, False, False, False, False, False, False, False]
-        for color in range(len(self.colors)):
-            image = pygame.image.load("Images/buttons/"+self.colors[color]+" Button.png").convert_alpha()
-            button  = Button(100,80+(color*80),image,0.2,self)
-            self.color_buttons.append(button)
-
-        # creating the check button and checking ___________________________________________________________________
-        self.check = False
-        check_image = pygame.image.load("images/Menu/Check Solid.png").convert_alpha()
-        button = Button(900, 600, check_image, 0.625, self)
-        self.check_button = button
-
-        #main menu
+        # attributes and buttons used for the main and info menus #FIXME  needs info menu ___________________________________________________________
         self.main_menu = True
         self.info_menu = False
         new_game_image = pygame.image.load("images/Menu/New Game Solid.png").convert_alpha() 
@@ -75,99 +46,153 @@ class Game:
         self.main_info_button = Button(self.screen_width/2,(self.screen_height/5)*3,info_image,1,self)
         self.main_quit_button = Button(self.screen_width/2,(self.screen_height/5)*4,quit_image,1,self)
         self.title_image = pygame.image.load("images/Menu/Word-Flow Logo.png").convert_alpha()
+
+        # creating the base font for the "character" objects (AKA each cell) 
+        self.base_font = pygame.font.Font(None, 32)
+
+        # load in level information and answers
+        self.current_level = 0 
+        self.levels = []
+        json_file = "grid.json"
+        self.load_levels(json_file,self.levels) # levels are stored in Board objects and all in a linear list 
+
+        # loading answers from a local json file. 
+        self.answers = []
+        json_answer = "answers.json"
+        self.load_levels(json_answer,self.answers) # answers are 2d lists stored in corresponding indexes in self.answers to self.levels
+
+        # self.characters represents the current level being played 
+        self.characters = self.levels[self.current_level].GetBoard()
+
+        # Initializing buttons for color selection 
+        self.colors = ["Dark Blue", "Green", "Light Blue", "Medium Blue", "Orange", "Pink", "Red", "Yellow", "Default"] # list of all the colors available
+        self.color_buttons = [] 
+        self.colors_index = [False, False, False, False, False, False, False, False, False] #status of each button (if a specific color of a corresponding index is currently selected)
+        for color in range(len(self.colors)):
+            image = pygame.image.load("Images/buttons/"+self.colors[color]+" Button.png").convert_alpha()
+            button  = Button(100,80+(color*80),image,0.2,self)
+            self.color_buttons.append(button)
+
+        # initializes "check" button that players will use in order to check if their work is correct
+        self.check = False
+        check_image = pygame.image.load("images/Menu/Check Solid.png").convert_alpha()
+        button = Button(900, 650, check_image, 0.625, self)
+        self.check_button = button
+
+
         
 
     def load_levels(self, json_file,lst):
-        """Loads the levels from a json file and creates characters and buttons appropriately. 
-        It then stores them in a board object and appends it to the self.levels list"""
+        """Loads the levels from a json file and creates characters and buttons to represent a grid appropriately. 
+        It then stores them in a board object and appends it to the self.levels list.
+        Alternatively if lst is self.answers then it stores the answers for a given level in 
+        the list"""
         with open(json_file, "r") as file: 
             data = json.load(file)
-        i = 0
+        i = 0 # i and j are used to know the spacing between cells in a grid
         j = 0
-        for grid in data:
+
+        # below are calculations to find where the center of the grid should be
+        grid_cell_width = 212* 0.4
+        grid_cell_height = 215* 0.4
+        grid_padding = 2 #space between cells
+        grid_size = len(data[0])
+        grid_width = grid_size * grid_cell_width + (grid_size + 1) * grid_padding 
+        grid_height = grid_size * grid_cell_height + (grid_size + 1) * grid_padding
+
+        # Calculate the position to center the grid
+        grid_y = ((self.screen_width - grid_width) // 2) * 1.3
+        grid_x = ((self.screen_height - grid_height) // 2) - 20
+
+        for grid in data:  #iterating per "level"
             character_grid = []
             i=0
-            for row in grid:
+            for row in grid: # iterating per column (as per the structure of the json file)
                 character_row = []
                 j=0
-                for item in row:
-                    character_image = pygame.image.load("images/"+item['color']+" Key.png").convert_alpha()
-                    character_button = Button(500 + (i*80),150 + (j*80),character_image,0.4,self)
+                for item in row: #iterating per object in a given column 
+                    character_image = pygame.image.load("images/"+item['color']+" Key.png").convert_alpha() # starts a cell in the given color
+                    image_y = grid_x + (j * (grid_cell_width + grid_padding)) + grid_padding 
+                    image_x = grid_y + (i * (grid_cell_height + grid_padding)) + grid_padding # location of the button in the grid
+                    character_button = Button(image_x,image_y,character_image,0.4,self)
                     character = Character(item['letter'], item['color'], character_button, item['has_text'], item['color_change'])
                     character_row.append(character)
                     j+=1
                 character_grid.append(character_row)
                 i+=1
-            temp = Board(character_grid)
-            lst.append(temp)
+            temp = Board(character_grid) # creates one board object per level
+            lst.append(temp) 
 
     def run_game(self):
         """Main loop for the game. it will keep running until the game is done
         There are 5 main types of events, game is being paused (pulls up paused menu), 
         game just started or newgame button was clicked, checking answers with check button, 
-        and game is being played, and Info screen shown. """
-        # Start the main loop for the game
+         main event for game  being played, and Info screen shown. """
+        
         while True:
-            # call a method to check to see if any keyboard events have occurred
-            self.screen.fill(self.bg_color)
-            self._check_events()
-            if self.main_menu: 
+            self.screen.fill(self.bg_color) # fill in background
+            self._check_events() #checks for special keyboard events
+
+            if self.main_menu: # if main menu should be pulled up
                 self._main_menu()
-            elif self.game_paused:
+            elif self.game_paused: # if the paused menu should be pulled up
                 self._paused()
-            elif self.check: 
+            elif self.check:  # if the player requested to check his answers
                 if self.check_answers(): # answer is right, moving on to next level
                     self.current_level +=1
                     self.characters = self.levels[self.current_level].GetBoard()
-
-                    self.screen.fill(self.bg_color)
-                    text_surface = self.base_font.render(f"Moving on to Level {self.current_level+1}", True, (0,0,0))
-                    self.screen.blit(text_surface, ((self.screen_width/2)-90,self.screen_height/2))
+                    self.screen.fill(self.bg_color)     
+                    font = pygame.font.Font("slkscr.ttf", 50)
+                    text_surface = font.render(f"Moving on to Level {self.current_level+1}", True, (0,0,0)) # dislpay intermediate message 
+                    width, height = text_surface.get_rect().size
+                    self.screen.blit(text_surface, (((self.screen_width-width)/2),(self.screen_height/2)-40))
                     pygame.display.flip() 
                     time.sleep(1.5)
-                self.check = False
-            else:
-                for row in range(len(self.characters)): # draw the characters on the screen
+                self.check = False 
+            else: # main event, where game is running a level
+                for row in range(len(self.characters)): # draw the characters/cells on the screen
                     for character in range(len(self.characters[row])):
                         self.character_update(row,character)
                         self.draw_character_text(self.characters[row][character])
-                if self.check_button.draw():
+                if self.check_button.draw(): # checks if player pressed paused or check buttons
                     self.check = True
                 if self.pause_button.draw():
                     self.game_paused = True
 
-                for button_index in range(len(self.color_buttons)):
-                    if self.color_buttons[button_index].draw(): #see which button color is selected and set all others to False
+                for button_index in range(len(self.color_buttons)): # draws color buttons
+                    if self.color_buttons[button_index].draw(): # checks which button was last pressed
                         self.colors_index = [False, False, False, False, False, False, False, False, False]
                         self.colors_index[button_index] = not self.colors_index[button_index]
 
-            pygame.display.flip()
+            pygame.display.flip() # flip the image to show updates
     
     def _main_menu(self): 
-        pass
-        image_width, image_height = self.title_image.get_rect().size
-        self.screen.blit(self.title_image, ((self.screen_width-image_width)/2, (self.screen_height-image_height)/14))
-        if self.main_new_button.draw(): 
+        """Displays the main starting menu of the game, with options to pull up instructions
+        start a new game or quit"""
+        image_width, image_height = self.title_image.get_rect().size 
+        self.screen.blit(self.title_image, ((self.screen_width-image_width)/2, (self.screen_height-image_height)/14)) # draw logo on the screen
+        if self.main_new_button.draw():  # check if new game button was selected
             self.main_menu = False
-            self.current_level = 0 
+            self.current_level = 0 # reset the game to level 0
             self.characters = self.levels[self.current_level].GetBoard()
-        elif self.main_info_button.draw(): 
+        elif self.main_info_button.draw():  # check if info button was selected to pull up the info page
             self.info_menu = True
-        elif self.main_quit_button.draw(): 
+        elif self.main_quit_button.draw():  #check if quit button was selected 
             sys.exit()
         
 
     def check_answers(self): 
         """Checks to see if answers are correct, if they are returns true, if not 
-        returns false and changes the color back to default of wront characters"""
+        returns false and changes the color back to default and resets the character letter
+        returns True if the answer is correct"""
         x = True
         for i in range(len(self.characters)):
             for j in range(len(self.characters[i])):
                 if self.characters[i][j] != self.answers[self.current_level].GetBoard()[i][j]:
                     x = False
                     self.characters[i][j].SetLetter(" ")
-                    if self.characters[i][j].get_color_change():
-                        new_image = pygame.image.load("Images/Default Key.png").convert_alpha() #opens up new image of default color
+                    if self.characters[i][j].get_color_change(): # checks if the mistaken cell is an end cell
+                        new_image = pygame.image.load("Images/Default Key.png").convert_alpha() 
                         self.characters[i][j].change_button_color(new_image, "Default") # updates the buttons color
         return x
     
@@ -175,54 +200,58 @@ class Game:
     def character_update(self,i, j):
         """update the character object on the screen
         drawing its button and checking if it is being clicked, 
-        and if so changing the color appropriately"""
-        if self.characters[i][j].getButton().draw(): # drawing button and seeing if it is selected
-            print("Hi")
-            if self.characters[i][j].get_color_change(): # if button can have its color changed
+        and if so changing the color appropriately
+        
+        once selected places the user in "writing mode" where they can enter
+        text input for a given cell/character"""
+
+        if self.characters[i][j].get_button().draw(): # drawing button and seeing if it is selected
+            if self.characters[i][j].get_color_change(): # Checks if the character can have its color changed
                 for color in range(len(self.colors_index)): 
                     if self.colors_index[color]: 
-                        self.characters[i][j].SetColor(self.colors_index[color]) #changes the color attribute once cell changes color
-                        new_image = pygame.image.load("Images/"+self.colors[color]+" Key.png").convert_alpha() #opens up new image of correct color
-                        self.characters[i][j].change_button_color(new_image, self.colors[color]) # updates the buttons color
-        
-            if self.characters[i][j].get_has_text(): # checks if the button pressed has a modifiable character (isn't a given start or end, and isn't one of the color select buttons)
-                text = self.characters[i][j].GetLetter()
+                        self.characters[i][j].SetColor(self.colors_index[color]) # changes the color attribute once cell changes color
+                        new_image = pygame.image.load("Images/"+self.colors[color]+" Key.png").convert_alpha() 
+                        self.characters[i][j].change_button_color(new_image, self.colors[color]) # updates the buttons color with a new image
+            
+            # checks if the button pressed has a modifiable character (isn't a given start or end, and isn't one of the color select buttons)
+            if self.characters[i][j].get_has_text(): 
+                text = self.characters[i][j].get_letter()
                 running = True
-                while running: #player stuck in loop until he enters "enter" to select new character 
-                    #game can't be paused if player is writing
+                while running: # player stuck in writting mode until he enters "enter" to select new character or selects a cell
                     self.screen.fill(self.bg_color)
-                    #draw up the grid so it doesn't get covered
+                    # redraw up the grid so it doesn't get covered
                     for row in self.characters: 
                         for chars in row:
-                            if chars.getButton().draw():
+                            if chars.get_button().draw():
                                 running = False # if user selects other cell it kicks out and saves current work
                             self.draw_character_text(chars)
                 
-                    #draw up teh color buttons as well so they dont get covered
-                    for button_index in range(len(self.color_buttons)): #WE CAN MAYBE CHANGE THIS TO IF ANOTHER COLOR IS SELECTED IT BREAKS OUT OF THIS LOOP
-                        self.color_buttons[button_index].draw() 
+                    # draw up the color buttons as well so they dont get covered also kicks player out of writting mode if selected
+                    for button_index in range(len(self.color_buttons)): 
+                        if self.color_buttons[button_index].draw():
+                            running = False 
                         
                     for event in pygame.event.get(): #get user input text 
-                        #check if menu or if game ends PROBLEM: MENU CAN"T BE SELECTED WITH M SO NEEDS AN ICON BUTTON___________________________________________
                         if event.type == pygame.QUIT:
                             sys.exit()
-                        #handle text input
+                        # handle text input
                         if event.type == pygame.TEXTINPUT:
                             text = event.text
-                        #handle special keys
+                        # handle special keys
                         if event.type == pygame.KEYDOWN: 
                             if event.key == pygame.K_RETURN:
                                 print(text)  # Print the input text
                                 running = False
                             elif event.key == pygame.K_BACKSPACE:
                                 text = ""
-                    self.characters[i][j].SetLetter(text)
+                    self.characters[i][j].SetLetter(text) # updates the character for the given cell
                     pygame.display.flip()
 
 
     def draw_character_text(self, character):
-        text_surface = self.base_font.render(character.GetLetter(), True, (0,0,0))
-        self.screen.blit(text_surface, (character.getButton().rect.x + 35, character.getButton().rect.y +32))
+        """Given a character it draws on the screen its text attribute over its image"""
+        text_surface = self.base_font.render(character.get_letter(), True, (0,0,0))
+        self.screen.blit(text_surface, (character.get_button().rect.x + 35, character.get_button().rect.y +32))
 
 
     def _paused(self):
@@ -230,28 +259,25 @@ class Game:
         to continue, quit, or start a new game"""
         self.screen.fill(self.bg_color)
         if self.info_button.draw():
-            time.sleep(0.2) # stops program for a bit to not have problems with colission points 
+            time.sleep(0.2) # stops program temporarily to avoid problems with colission points 
             self.game_paused = False
         if self.quit_button.draw():
             sys.exit()
-        if self.new_game_button.draw(): #FIXME needs to START A NEW GAME ___________________________________________________________
+        if self.new_game_button.draw():  # pulls up the main menu again for players to restart the game
             self.game_paused = False
+            self.main_menu = True
 
 
     def _check_keydown_events(self, event):
-        # Is the key the right arrow or is it the left arrow
+        """Checks if user pressed special key m which pulls up the paused menu"""
         if event.key == pygame.K_m:
             if self.game_paused:
                 self.game_paused = False
             else:
                 self.game_paused = True
-
-    def _check_keyup_events(self, event):# FIXME ___________________________________________________________ is this needed? 
-        # Did the player stop holding down the arrow keys?
-        pass
-
         
     def _check_events(self):
+        """Checks for special events such as closing the tab and keydown events"""
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 sys.exit()
@@ -259,14 +285,9 @@ class Game:
             elif event.type == pygame.KEYDOWN:
                 self._check_keydown_events(event)
             # Did the player stop holding down the arrow key?
-            elif event.type == pygame.KEYUP:
-                self._check_keyup_events(event)
-
-    def menu(self): #FIXME needs to be created__________________________________________________
-        pass
 
 
 
-x = Game()
-x.run_game()
+x = Game() # Creates a game instance
+x.run_game() # Start the game
 

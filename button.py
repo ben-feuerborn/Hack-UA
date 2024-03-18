@@ -1,3 +1,8 @@
+"""Author: Giuseppe Pongelupe Giacoia
+Date 03/17/2024
+purpose: button class using pygame in order to find a perimiter of a given image
+and detect whether or not a user has pressed it. 
+"""
 import pygame
 
 class Button():
@@ -16,22 +21,22 @@ class Button():
         #every button starts unclicked
         self.clicked = False
     
-    def change_image(self,image): # we changed the color of the image
+    def change_image(self,image): # Replace the button's image
         self.image = pygame.transform.scale(image,(int(image.get_width()*self.scale),int(image.get_height()*self.scale)))
 
     def get_image(self):
         return self.image
     
-    def draw(self):
+    def draw(self): 
         action = False
-        #get position of mouse
+        # get position of mouse
         pos = pygame.mouse.get_pos()
 
-        #Check mouseover and clicked conditions
+        # Check mouseover and clicked conditions
         if self.rect.collidepoint(pos):
             # 0  is left click 1 is middle mouse button and 2 is right mouse button
             if pygame.mouse.get_pressed()[0] == 1 and self.clicked == False:
-                #this variable allows it to only register one click at a time
+                # this variable allows it to only register one click at a time
                 self.clicked = True
                 action = True
 
@@ -39,7 +44,7 @@ class Button():
         if pygame.mouse.get_pressed()[0] ==0:
             self.clicked = False
 
-        #draw button on screen
+        # draw button on screen
         self.screen.blit(self.image,(self.rect.x,self.rect.y))
 
         return action
