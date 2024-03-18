@@ -11,14 +11,17 @@ Before you can start playing WORD-FLOW, you'll need something capable of running
 
 
 ### Python
-In order to play *WORD-FLOW* you need to have python installed. If you don't already have python installed locally to your device, you can use the following command in the VS Code terminal to download it.
-``` pip install python3 ```
+In order to play *WORD-FLOW* you need to have python installed. If you don't already have python installed locally to your device, you can use the following command in the VS Code terminal to download it.  
+  
+``` pip install python3 ```  
+  
 If you're uncomfortable with this method, you can download python directly from Python's own site by clicking [here](https://www.python.org/).
   
   
 ### Pygame
 In addition to python, you'll also need pygame. Once again, you'll be able to use the following command in your terminal to download the required packages, or follow the [installation guide](https://www.pygame.org/wiki/GettingStarted) for further explanation and resources.
-``` pip install pygame ```
+  
+``` pip install pygame ```  
 
 
 ### WORD-FLOW
@@ -39,9 +42,9 @@ When you give a cell a color you have to double click or press "enter" before yo
   
 ### Capitalization Doesn't Matter
 We'll take whatever you got as long as its correct, so don't worry about the capitalization
-
+  
 ### Skip the Letters
 Start with making sure all the colors connect, than you can go back and make the letters fit the puzzle
-
+  
 ### Show Answers
 Everyone gets stuck sometimes! If you ever feel stuck, click the show answers buttong and go on to the next or come back at a latter time. Remember, the goal of any game is to have fun!
