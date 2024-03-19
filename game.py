@@ -51,8 +51,6 @@ class Game:
         self.exit_button = Button(self.screen_width-70, 50,exit_image, 0.6, self)
         next_image = pygame.image.load("images/Menu/Next Button.png").convert_alpha() 
         self.next_button = Button(self.screen_width-150, 50,next_image, 0.6, self)
-        back_button = pygame.image.load("images/Menu/Back Button.png").convert_alpha() 
-        self.back_button = Button(self.screen_width-150, 50,back_button, 0.6, self)
         
         # info menu pages loaded and scaled for the given window size
         self.info_menu_page1 = pygame.image.load("images/Menu/Info Page 1.png").convert_alpha()
@@ -186,12 +184,12 @@ class Game:
                 if self.check_button.draw(): # checks if player pressed paused or check buttons
                     self.check = True
                 if self.pause_button.draw(): # if game is paused
+                    self.pause_button.change_image(pygame.image.load("images/Menu/Exit Button.png").convert_alpha()) # change the image of the pause button to a resume button
+
                     self.game_paused = True
-                    time.sleep(0.01) # stops program temporarily to avoid problems with colission points
                 if self.show_answers_button.draw(): # checks if user wants to show the answers
                     self.characters = self.answers[self.current_level].GetBoard()
                     self.checked = True
-
             pygame.display.flip() # flip the image to show updates
 
     def _is_checked(self):
@@ -220,14 +218,15 @@ class Game:
         if self.exit_button.draw(): 
             self.info_menu = False
         elif self.next_button.draw():
-            time.sleep(0.01)
+            self.next_button.change_image(pygame.image.load("images/Menu/Back Button.png").convert_alpha()) # change the image of the pause button to a resume button
             self.info_menu2 = True  
 
 
     def _info_menu2(self):
         """Shows second page in the info menu"""
         self.screen.blit(self.info_menu_page2, (0,0))
-        if self.back_button.draw(): 
+        if self.next_button.draw(): 
+            self.next_button.change_image(pygame.image.load("images/Menu/Next Button.png").convert_alpha()) # change the image of the pause button to a resume button
             self.info_menu2 = False
         elif self.exit_button.draw(): 
             self.info_menu = False
@@ -244,27 +243,25 @@ class Game:
             self.info_menu = True
         elif self.main_quit_button.draw():  #check if quit button was selected 
             sys.exit()
-        time.sleep(0.03) # stops temporarily to avoid collision problems
     
     def _paused(self):
         """Draw the pause screen menu and give 3 different options to the user
         to continue, quit, or start a new game"""
         if self.info_button.draw():
-            time.sleep(0.01) # stops program temporarily to avoid problems with colission points 
             self.info_menu = True
             self.game_paused = False
-        if self.quit_button.draw():
+        elif self.quit_button.draw():
             sys.exit()
-        if self.new_game_button.draw():  # pulls up the main menu again for players to restart the game
+        elif self.new_game_button.draw():  # pulls up the main menu again for players to restart the game
             self.game_paused = False
             self.current_level = 0 # reset the game to level 0
             self.levels = [] # reset the levels
             self.load_levels("grid.json",self.levels)
             self.characters = self.levels[self.current_level].GetBoard()
             self.main_menu = True
-        if self.exit_button.draw(): 
+        elif self.pause_button.draw(): 
+            self.pause_button.change_image(pygame.image.load("images/Menu/Pause Button Solid.png").convert_alpha()) # change the image of the pause button to a resume button
             self.game_paused = False
-            time.sleep(0.05)
         
 
     def check_answers(self): 
