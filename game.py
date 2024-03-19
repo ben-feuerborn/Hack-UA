@@ -176,6 +176,9 @@ class Game:
             elif self.check:  # if the player requested to check his answers
                 self._is_checked()
             else: # main event, where game is running a level
+                self.draw_categories() # draw the category on the screen
+                self.draw_color_buttons() # draw the color buttons on the screen
+
                 for row in range(len(self.characters)): # draw the characters/cells on the screen
                     for character in range(len(self.characters[row])):
                         self.character_update(row,character)
@@ -184,11 +187,10 @@ class Game:
                     self.check = True
                 if self.pause_button.draw(): # if game is paused
                     self.game_paused = True
+                    time.sleep(0.01) # stops program temporarily to avoid problems with colission points
                 if self.show_answers_button.draw(): # checks if user wants to show the answers
                     self.characters = self.answers[self.current_level].GetBoard()
                     self.checked = True
-                self.draw_categories() # draw the category on the screen
-                self.draw_color_buttons() # draw the color buttons on the screen
 
             pygame.display.flip() # flip the image to show updates
 
@@ -242,14 +244,13 @@ class Game:
             self.info_menu = True
         elif self.main_quit_button.draw():  #check if quit button was selected 
             sys.exit()
-        time.sleep(0.05) # stops temporarily to avoid collision problems
+        time.sleep(0.03) # stops temporarily to avoid collision problems
     
     def _paused(self):
         """Draw the pause screen menu and give 3 different options to the user
         to continue, quit, or start a new game"""
-        self.screen.fill(self.bg_color)
         if self.info_button.draw():
-            time.sleep(0.1) # stops program temporarily to avoid problems with colission points 
+            time.sleep(0.01) # stops program temporarily to avoid problems with colission points 
             self.info_menu = True
             self.game_paused = False
         if self.quit_button.draw():
@@ -263,6 +264,7 @@ class Game:
             self.main_menu = True
         if self.exit_button.draw(): 
             self.game_paused = False
+            time.sleep(0.05)
         
 
     def check_answers(self): 
@@ -295,6 +297,7 @@ class Game:
                 # checks if the button pressed has a modifiable character (isn't a given start or end, and isn't one of the color select buttons)
                 if self.characters[i][j].get_has_text(): 
                     running = True
+                    text = self.characters[i][j].get_letter()
                     while running: # player stuck in "writing mode" until he enters "enter" to select new character or selects a cell
                         self.screen.fill(self.bg_color)
                         self.draw_categories() # draw category in the screen
@@ -309,9 +312,9 @@ class Game:
                                     i=indexi
                                     j=indexj
                                     self.update_character_color(i,j)
+                                    text = self.characters[i][j].get_letter()
                                 self.draw_character_text(self.characters[indexi][indexj]) # draw each characters text
 
-                        text = self.characters[i][j].get_letter()
                         for event in pygame.event.get(): # get user input text  
                             if event.type == pygame.QUIT:
                                 sys.exit()
@@ -331,11 +334,13 @@ class Game:
     def draw_color_buttons(self):
         """draws the button indexes and checks if they were selected, if so it changes the color of the cell accordingly
         returns true if one was pressed, false if not"""
+        x = False
         for button_index in range(len(self.color_buttons)): # draws color buttons
             if self.color_buttons[button_index].draw(): # checks which button was last pressed
                 self.colors_index = [False, False, False, False, False, False, False, False, False]
                 self.colors_index[button_index] = not self.colors_index[button_index]
-                return True
+                x = True
+        return x
                         
     def draw_categories(self): 
         """displays the correct category,  according to whatever level it is, on the screen"""
