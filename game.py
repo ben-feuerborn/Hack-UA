@@ -15,9 +15,6 @@ import json
 import time
 
 
-import socket
-
-
 class Game:
 
 
@@ -333,7 +330,6 @@ class Game:
                         # draw up the color buttons as well so they dont get covered also kicks player out of writting mode if selected
                         running = not self.draw_color_buttons()
 
-
                         # redraw up the grid so it doesn't get covered
                         for indexi in range(len(self.characters)):
                             for indexj in range(len(self.characters[indexi])):
@@ -349,7 +345,7 @@ class Game:
                         if self.pause_button.draw(): # if game is paused
                             self.pause_button.change_image(pygame.image.load("images/Menu/Exit Button.png").convert_alpha()) # change the image of the pause button to a resume button
                             self.game_paused = True
-                            running = False #FIXME
+                            running = False # FIXME
 
 
                         for event in pygame.event.get(): # get user input text  
